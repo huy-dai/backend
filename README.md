@@ -3,12 +3,25 @@
 Created and maintained by: TheReddKing (TechX)
 
 ## Dev:
+
 ### Local Installation:
 
-    python -m venv env
+I found that the installation requires Python v3.9, since some of the older packages seem to break with newer Python v3.10 or later:
+
+To install Python v3.9 in Ubuntu you can do:
+
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:deadsnakes/ppa
+    sudo apt update
+    sudo apt install python3.9
+    sudo apt install python3.9-distutils
+
+Assuming Python v3.9 is installed at `usr/bin/python3.9`, you can do:
+
+    virtualenv -p /usr/bin/python3.9 env
     source env/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
     yarn
     cp .env.example .env
     cd client && yarn
