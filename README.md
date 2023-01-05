@@ -5,10 +5,10 @@ Created and maintained by: TheReddKing (TechX)
 ## Dev:
 ### Local Installation:
 
-    python -m venv env
+    python3 -m venv env
     source env/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
     yarn
     cp .env.example .env
     cd client && yarn
