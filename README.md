@@ -26,7 +26,25 @@ Assuming Python v3.9 is installed at `usr/bin/python3.9`, you can do:
     cp .env.example .env
     cd client && yarn
 
-Then edit your `.env` file. Once your database url is correct (you can use `createdb template` if you have postgres)
+For local work, I set up a database using PostgreSQL. To install it I do:
+
+    sudo apt install postgresql postgresql-contrib
+    sudo systemctl start postgresql.service
+
+Then I setup the corresponding role that I need to run the database and then create it:
+
+    sudo -u postgres createuser --interactive
+        Enter name of role to add: <username>
+        Shall the new role be a superuser? (y/n) y
+    sudo -u postgres psql
+        ALTER USER postgres PASSWORD 'myPassword'; ALTER ROLE
+    createdb template -W
+
+Then edit your `.env` file. It's recommended to set a secure SECRET_KEY and SERVER_API_KEY. In addition, change your SQLALCHEMY_DATABASE_URI. An example is:
+
+    SQLALCHEMY_DATABASE_URI="postgresql://username:password@localhost/template"
+
+Once your database url is correct, do:
 
     python manage.py db init
     python manage.py db migrate
@@ -35,7 +53,6 @@ Then edit your `.env` file. Once your database url is correct (you can use `crea
 ### Dev run
 
     yarn run dev
-    
 or (if you want to debug server side scripts)
 
     yarn start
